@@ -16,12 +16,10 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logging
 import io.ktor.features.ContentNegotiation
-import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.jackson.jackson
 import io.ktor.request.header
 import io.ktor.response.respond
-import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import java.time.LocalDate
@@ -54,10 +52,6 @@ fun Application.module(testing: Boolean = false) {
     val adapter = BffAdapter(client)
 
     routing {
-        get("/") {
-            call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
-        }
-
         get("/bff/claimable") {
             val authToken = call.request.header("X-Auth-Token")
             if (authToken.isNullOrEmpty()) {
