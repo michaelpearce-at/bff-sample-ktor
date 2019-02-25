@@ -32,6 +32,7 @@ fun Application.module(testing: Boolean = false) {
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
+            propertyNamingStrategy = PropertyNamingStrategy.SNAKE_CASE
         }
     }
 
